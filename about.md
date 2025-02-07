@@ -8,7 +8,7 @@ title: testing.com
 | test 1 | test 2     |
 | test 3 | test 4     |
 
-'''yaml
+```yaml
 {
   "jsonKey": "test1"
   "nested": {

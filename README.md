@@ -2,8 +2,8 @@
 
 ## description
 test עברית
-**Something Bold**
-__and an Italic__
+**Something Bold** \n
+__and an Italic__ \n
 
-### smaller title
-#### extra small title 
+### smaller title \n 
+#### extra small title  \n

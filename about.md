@@ -17,3 +17,9 @@ title: testing.com
     }
 }
 ```
+
+```python
+import x from y
+abc = 123
+efg = 'fedgsgh'
+```

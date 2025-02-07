@@ -3,8 +3,8 @@
 ## description
 
 test עברית
-**Something Bold** \n
-__and an Italic__ \n
+**Something Bold**  
+__and an Italic__  
 
 ### smaller title
 

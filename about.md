@@ -1,5 +1,5 @@
 ---
-test: testing.com
+title: testing.com
 ---
 # About
 

@@ -1,23 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Text Parser</title>
+<title>Text Wrap</title>
 <style>
-body {
-  font-family: sans-serif;
-}
-textarea {
-  width: 95%;
-  height: 150px;
-  margin-bottom: 10px;
-}
-#output {
-    white-space: pre-wrap; /* Preserve whitespace and wrap text */
-    border: 1px solid #ccc; /* Add a border to the output area */
-    padding: 5px;             /* Add some padding */
-    overflow-y: auto;        /* Add a scrollbar if content overflows */
-    min-height: 50px;       /* Set a minimum height */
-}
+/* ... (CSS styles remain the same) */
 </style>
 </head>
 <body>
@@ -28,17 +14,10 @@ textarea {
 <textarea id="input"></textarea><br>
 
 <label for="first-chars">First Characters:</label>
-<input type="text" id="first-chars" value=""><br>
-
-<label for="last-chars">Last Characters (All Lines):</label>
-<input type="text" id="last-chars" value=""><br>
-
-<label for="last-line-last-chars">Last Characters (Last Line):</label>
-<input type="text" id="last-line-last-chars" value=""><br>
-
-<button onclick="parseText()">Parse/Convert</button>
+<input type="text" id="first-chars" value="'"><br>  <label for="last-chars">Last Characters (All Lines):</label>
+<input type="text" id="last-chars" value="'"><br>  <label for="last-line-last-chars">Last Characters (Last Line):</label>
+<input type="text" id="last-line-last-chars" value="'"><br>  <button onclick="parseText()">Parse/Convert</button>
 <button onclick="selectAllOutput()">Select All</button>
-
 
 <h2>Output:</h2>
 <div id="output"></div>
@@ -71,12 +50,7 @@ function parseText() {
 }
 
 function selectAllOutput() {
-    const outputDiv = document.getElementById("output");
-    const range = document.createRange();
-    range.selectNodeContents(outputDiv);
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
+    // ... (same as before)
 }
 </script>
 

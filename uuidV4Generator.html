@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>UUID v4 Generator</title>
+<style>
+body {
+  font-family: sans-serif;
+}
+#uuid-container {
+    margin-top: 10px;
+}
+.uuid-item {
+    margin-bottom: 5px;
+}
+</style>
+</head>
+<body>
+
+<h1>UUID v4 Generator</h1>
+
+<label for="num-uuids">Number of UUIDs:</label>
+<input type="number" id="num-uuids" value="1" min="1">
+
+<button onclick="generateUUIDs()">Generate</button>
+<button onclick="copyUUIDs()">Copy</button>
+
+<div id="uuid-container">
+  </div>
+
+<script>
+function generateUUIDs() {
+  const numUUIDs = document.getElementById("num-uuids").value;
+  const uuidContainer = document.getElementById("uuid-container");
+  uuidContainer.innerHTML = ""; // Clear previous UUIDs
+
+  for (let i = 0; i < numUUIDs; i++) {
+    const uuid = generateUUIDv4();
+    const uuidElement = document.createElement("div");
+    uuidElement.className = "uuid-item";
+    uuidElement.textContent = uuid;
+    uuidContainer.appendChild(uuidElement);
+  }
+}
+
+function generateUUIDv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+function copyUUIDs() {
+  const uuidContainer = document.getElementById("uuid-container");
+  const uuids = Array.from(uuidContainer.querySelectorAll('.uuid-item'))
+                    .map(item => item.textContent)
+                    .join('\n'); // Join with newlines for multiple UUIDs
+
+  navigator.clipboard.writeText(uuids)
+    .then(() => {
+      // Optional: Provide visual feedback that the UUIDs were copied.
+      const copyButton = document.querySelector('button:nth-child(2)'); // Select the "Copy" button
+      copyButton.textContent = "Copied!";
+      setTimeout(() => copyButton.textContent = "Copy", 2000); // Reset button text after 2 seconds
+    })
+    .catch(err => {
+      console.error('Failed to copy: ', err);
+      // Optional: Display an error message to the user.
+      alert("Copy failed. Please try again or copy manually.");
+    });
+}
+
+
+</script>
+
+</body>
+</html>

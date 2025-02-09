@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Text Wrap</title>
+<title>Text Parser</title>
 <style>
 body {
   font-family: sans-serif;
@@ -13,8 +13,11 @@ textarea {
 }
 #output {
     white-space: pre-wrap; /* Preserve whitespace and wrap text */
+    border: 1px solid #ccc; /* Add a border to the output area */
+    padding: 5px;             /* Add some padding */
+    overflow-y: auto;        /* Add a scrollbar if content overflows */
+    min-height: 50px;       /* Set a minimum height */
 }
-
 </style>
 </head>
 <body>
@@ -27,10 +30,15 @@ textarea {
 <label for="first-chars">First Characters:</label>
 <input type="text" id="first-chars" value=""><br>
 
-<label for="last-chars">Last Characters:</label>
+<label for="last-chars">Last Characters (All Lines):</label>
 <input type="text" id="last-chars" value=""><br>
 
+<label for="last-line-last-chars">Last Characters (Last Line):</label>
+<input type="text" id="last-line-last-chars" value=""><br>
+
 <button onclick="parseText()">Parse/Convert</button>
+<button onclick="selectAllOutput()">Select All</button>
+
 
 <h2>Output:</h2>
 <div id="output"></div>
@@ -40,19 +48,35 @@ function parseText() {
   const inputText = document.getElementById("input").value;
   const firstChars = document.getElementById("first-chars").value;
   const lastChars = document.getElementById("last-chars").value;
+  const lastLineLastChars = document.getElementById("last-line-last-chars").value;
   const outputDiv = document.getElementById("output");
 
-  const lines = inputText.split('\n'); // Split into lines
+  const lines = inputText.split('\n');
 
   let outputText = "";
-  for (const line of lines) {
-    const trimmedLine = line.trim(); // Remove leading/trailing whitespace
-    if (trimmedLine !== "") { // Skip empty lines
-        outputText += firstChars + trimmedLine + lastChars + "\n";
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const trimmedLine = line.trim();
+    if (trimmedLine !== "") {
+        outputText += firstChars + trimmedLine;
+        if (i === lines.length - 1) { // Check if it's the last line
+            outputText += lastLineLastChars + "\n";
+        } else {
+            outputText += lastChars + "\n";
+        }
     }
   }
 
-  outputDiv.textContent = outputText; // Set output text
+  outputDiv.textContent = outputText;
+}
+
+function selectAllOutput() {
+    const outputDiv = document.getElementById("output");
+    const range = document.createRange();
+    range.selectNodeContents(outputDiv);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
 }
 </script>
 

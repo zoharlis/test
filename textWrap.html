@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Text Wrap</title>
+<style>
+body {
+  font-family: sans-serif;
+}
+textarea {
+  width: 95%;
+  height: 150px;
+  margin-bottom: 10px;
+}
+#output {
+    white-space: pre-wrap; /* Preserve whitespace and wrap text */
+}
+
+</style>
+</head>
+<body>
+
+<h1>Text Parser</h1>
+
+<label for="input">Input Text:</label><br>
+<textarea id="input"></textarea><br>
+
+<label for="first-chars">First Characters:</label>
+<input type="text" id="first-chars" value=""><br>
+
+<label for="last-chars">Last Characters:</label>
+<input type="text" id="last-chars" value=""><br>
+
+<button onclick="parseText()">Parse/Convert</button>
+
+<h2>Output:</h2>
+<div id="output"></div>
+
+<script>
+function parseText() {
+  const inputText = document.getElementById("input").value;
+  const firstChars = document.getElementById("first-chars").value;
+  const lastChars = document.getElementById("last-chars").value;
+  const outputDiv = document.getElementById("output");
+
+  const lines = inputText.split('\n'); // Split into lines
+
+  let outputText = "";
+  for (const line of lines) {
+    const trimmedLine = line.trim(); // Remove leading/trailing whitespace
+    if (trimmedLine !== "") { // Skip empty lines
+        outputText += firstChars + trimmedLine + lastChars + "\n";
+    }
+  }
+
+  outputDiv.textContent = outputText; // Set output text
+}
+</script>
+
+</body>
+</html>

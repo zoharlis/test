@@ -52,6 +52,12 @@ function parseText() {
   const outputDiv = document.getElementById("output");
 
   const lines = inputText.split('\n');
+  let lastNonEmptyLine = lines.length - 1; // Initialize to the last line
+
+  // Find the last non-empty line
+  while (lastNonEmptyLine >= 0 && lines[lastNonEmptyLine].trim() === "") {
+    lastNonEmptyLine--;
+  }
 
   let outputText = "";
   for (let i = 0; i < lines.length; i++) {
@@ -59,7 +65,8 @@ function parseText() {
     const trimmedLine = line.trim();
     if (trimmedLine!== "") {
         outputText += firstChars + trimmedLine;
-        if (i === lines.length - 1) { // Check if it's the last line
+        // Check if it's the last non-empty line
+        if (i === lastNonEmptyLine) {
             outputText += lastLineLastChars + "\n";
         } else {
             outputText += lastChars + "\n";

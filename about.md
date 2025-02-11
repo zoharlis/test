@@ -5,7 +5,7 @@ title: testing.com
 
 [UUID v4 Generator](uuidV4Generator.html)  
 
-[Text Wrapper](textWrapper.html)  
+[Text Wrapper](textWrap.html)  
 
 
 | name   | Address    |
